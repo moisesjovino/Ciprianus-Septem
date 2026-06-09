@@ -1,5 +1,3 @@
-# Ciprianus-Septem
-tecnológica da Ciprianus Septem
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -291,7 +289,6 @@ tecnológica da Ciprianus Septem
     <div id="videos_rep" class="pagina">
         <h1>📺 VIDEOTECA: AUDITORIA E DOSSIÊ DE IMPACTO</h1>
         <div class="texto-curto">Catálogo unificado de provas documentais detalhando as falhas estruturais do modelo de mineração convencional.</div>
-        
         <div class="grid-videos">
             <div class="card-video"><h3>Dossiê Técnico de Risco — Relato 01</h3><p>Análise de estabilidade física e riscos estruturais em barramentos hidráulicos.</p><a href="https://youtube.com/shorts/SzU5rV-xV-Y?si=oHCQSaehnnTpSZYK" target="_blank" class="btn-play">▶️ Ver no YouTube</a></div>
             <div class="card-video"><h3>Vistoria de Campo e Critérios — Relato 02</h3><p>Fiscalização sobre a consistência e segurança de dejetos minerais hidratados.</p><a href="https://youtube.com/shorts/ufBIgGayh00?si=xlIPDwAdN7DLVBO5" target="_blank" class="btn-play">▶️ Ver no YouTube</a></div>
