@@ -4,60 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ciprianus Septem — Gestão & Tecnologia</title>
-<meta name="description" content="Ciprianus Septem Gestão & Tecnologia Ltda. — Inteligência Avançada, Semicondutores, Energia e Malha Autônoma.">
+<meta name="description" content="Ciprianus Septem Gestão & Tecnologia Ltda. — Malha Autônoma e Soluções Tecnológicas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg-main: #060812;
-    --bg-card: rgba(18, 24, 43, 0.65);
-    --bg-card-hover: rgba(26, 35, 62, 0.85);
-    --border-glow: rgba(127, 0, 255, 0.3);
+    --bg-card: rgba(18, 24, 43, 0.7);
+    --border-glow: rgba(0, 242, 254, 0.4);
     --border-gold: rgba(201, 162, 39, 0.35);
-    
     --primary-cyan: #00f2fe;
     --primary-purple: #7f00ff;
     --gold: #c9a227;
     --gold-bright: #e8c766;
-    
     --text-main: #f0f3fd;
     --text-muted: #a0a7c2;
-    --text-dim: #606885;
-    
-    --font-serif: 'Fraunces', serif;
-    --font-sans: 'Inter', sans-serif;
     --font-title: 'Space Grotesk', sans-serif;
+    --font-sans: 'Inter', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; background: var(--bg-main); }
   body {
     font-family: var(--font-sans);
     background: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
-    overflow-x: hidden;
   }
 
-  /* Glow Background Effects (Ai-Nest Style) */
-  .bg-glow-1 {
-    position: absolute; width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(127,0,255,0.18) 0%, rgba(0,0,0,0) 70%);
-    top: -100px; left: -100px; z-index: -1; pointer-events: none;
-  }
-  .bg-glow-2 {
-    position: absolute; width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(0,242,254,0.12) 0%, rgba(0,0,0,0) 70%);
-    top: 300px; right: -200px; z-index: -1; pointer-events: none;
+  .bg-glow {
+    position: absolute; width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.12) 0%, rgba(127, 0, 255, 0.05) 50%, transparent 70%);
+    top: -200px; left: 50%; transform: translateX(-50%); z-index: -1; pointer-events: none;
   }
 
-  /* Header Navigation */
+  /* HEADER & NAV */
   header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: rgba(6, 8, 18, 0.85);
-    backdrop-filter: blur(16px);
+    background: rgba(6, 8, 18, 0.9); backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   .nav-row {
@@ -65,131 +50,83 @@
     justify-content: space-between; padding: 14px 24px;
   }
   .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .logo-mark { width: 42px; height: 42px; object-fit: contain; border-radius: 8px; }
-  .logo-text h1 { font-family: var(--font-title); font-size: 1.1rem; color: #fff; letter-spacing: -0.02em; }
-  .logo-text span { font-family: var(--font-mono); font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; }
+  .logo-mark { width: 40px; height: 40px; object-fit: contain; }
+  .logo-text h1 { font-family: var(--font-title); font-size: 1.1rem; color: #fff; }
+  .logo-text span { font-family: var(--font-mono); font-size: 0.65rem; color: var(--gold); text-transform: uppercase; }
 
-  nav ul { display: flex; list-style: none; gap: 1.8rem; align-items: center; }
-  nav a.navlink {
-    font-size: 0.9rem; text-decoration: none; color: var(--text-muted);
-    transition: color 0.2s; position: relative; padding: 6px 0;
-  }
+  nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
+  nav a.navlink { font-size: 0.9rem; text-decoration: none; color: var(--text-muted); transition: 0.2s; }
   nav a.navlink:hover { color: #fff; }
 
-  /* Dropdown Projetos */
+  /* DROPDOWN DOS DEMAIS PROJETOS */
   .dropdown { position: relative; }
+  .dropdown-btn {
+    background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-gold);
+    color: var(--gold-bright); padding: 8px 16px; border-radius: 8px; font-weight: 600;
+    cursor: pointer; font-size: 0.88rem; transition: 0.2s;
+  }
+  .dropdown-btn:hover { background: rgba(201, 162, 39, 0.15); }
   .dropdown-menu {
-    position: absolute; top: 100%; left: 0; width: 260px;
-    background: rgba(13, 17, 32, 0.95); backdrop-filter: blur(20px);
-    border: 1px solid var(--border-glow); border-radius: 12px;
+    position: absolute; top: 110%; right: 0; width: 320px; max-height: 400px; overflow-y: auto;
+    background: rgba(13, 17, 32, 0.98); border: 1px solid var(--border-glow); border-radius: 12px;
     padding: 10px; opacity: 0; visibility: hidden; transform: translateY(10px);
-    transition: all 0.25s ease; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    transition: all 0.25s ease; box-shadow: 0 20px 40px rgba(0,0,0,0.8);
   }
   .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
   .dropdown-menu a {
-    display: block; padding: 8px 12px; color: var(--text-muted); text-decoration: none;
-    font-size: 0.85rem; border-radius: 6px; transition: 0.2s;
+    display: block; padding: 10px 12px; color: var(--text-muted); text-decoration: none;
+    font-size: 0.85rem; border-radius: 6px; border-bottom: 1px solid rgba(255,255,255,0.03); transition: 0.2s;
   }
-  .dropdown-menu a:hover { background: rgba(127, 0, 255, 0.2); color: #fff; }
+  .dropdown-menu a:hover { background: rgba(0, 242, 254, 0.15); color: #fff; }
 
-  .nav-highlight {
-    background: linear-gradient(135deg, rgba(0,242,254,0.15), rgba(127,0,255,0.15));
-    border: 1px solid var(--primary-cyan); color: #fff !important;
-    padding: 6px 14px !important; border-radius: 20px; font-weight: 500;
+  /* HERO CENTRALIZADO — PROJETO MALHA AUTÔNOMA */
+  .hero-center {
+    padding: 180px 24px 100px; max-width: 900px; margin: 0 auto; text-align: center;
+  }
+  .badge-main {
+    display: inline-flex; font-family: var(--font-mono); font-size: 0.78rem;
+    padding: 6px 16px; background: rgba(0, 242, 254, 0.1); border: 1px solid var(--primary-cyan);
+    border-radius: 30px; color: var(--primary-cyan); margin-bottom: 1.5rem; text-transform: uppercase;
+  }
+  .hero-center h2 {
+    font-family: var(--font-title); font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1; margin-bottom: 1.5rem;
+  }
+  .hero-center h2 span {
+    background: linear-gradient(135deg, var(--primary-cyan), var(--gold-bright));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-center p.description {
+    font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.8;
+  }
+  .malha-card {
+    background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: 20px;
+    padding: 3rem; backdrop-filter: blur(12px); box-shadow: 0 0 50px rgba(0, 242, 254, 0.15); margin-top: 2rem;
   }
 
-  /* Buttons */
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.88rem;
-    padding: 0.75rem 1.4rem; border-radius: 8px; text-decoration: none; cursor: pointer; transition: 0.25s;
-  }
-  .btn-gradient {
+  .btn-action {
+    display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1rem;
+    padding: 1rem 2rem; border-radius: 10px; text-decoration: none; cursor: pointer;
     background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
-    color: #fff; border: none; box-shadow: 0 0 20px rgba(127,0,255,0.4);
+    color: #fff; border: none; box-shadow: 0 0 25px rgba(0,242,254,0.4); transition: 0.25s;
   }
-  .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0,242,254,0.6); }
-  .btn-outline {
-    background: transparent; border: 1px solid var(--border-gold); color: var(--gold-bright);
-  }
-  .btn-outline:hover { background: rgba(201,162,39,0.1); border-color: var(--gold-bright); }
+  .btn-action:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(0,242,254,0.7); }
 
-  /* Hero Section */
-  .hero { padding: 170px 24px 100px; max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
-  .badge-tech {
-    display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem;
-    padding: 6px 14px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-glow);
-    border-radius: 30px; color: var(--primary-cyan); margin-bottom: 1.5rem;
-  }
-  .hero h2 { font-family: var(--font-title); font-size: clamp(2.5rem, 4.5vw, 3.8rem); line-height: 1.1; margin-bottom: 1.2rem; }
-  .hero h2 span { background: linear-gradient(135deg, var(--primary-cyan), var(--gold-bright)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .hero p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; max-width: 540px; }
-  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-  /* Hero Card / Feature Frame */
-  .hero-card-frame {
-    background: var(--bg-card); border: 1px solid var(--border-glow);
-    border-radius: 20px; padding: 2rem; backdrop-filter: blur(12px);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5); position: relative;
-  }
-
-  /* Section Styling */
-  section { padding: 90px 24px; max-width: 1240px; margin: 0 auto; }
-  .section-title { text-align: center; margin-bottom: 3.5rem; }
-  .section-title h3 { font-family: var(--font-title); font-size: 2.2rem; color: #fff; }
-  .section-title p { color: var(--text-muted); margin-top: 0.5rem; }
-
-  /* Malha Autônoma Section */
-  .malha-box {
-    background: linear-gradient(135deg, rgba(13,18,36,0.9), rgba(20,10,35,0.9));
-    border: 1px solid var(--primary-cyan); border-radius: 20px; padding: 3rem;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
-    box-shadow: 0 0 30px rgba(0,242,254,0.15);
-  }
-  .malha-box h3 { font-family: var(--font-title); font-size: 2rem; color: #fff; margin-bottom: 1rem; }
-  .malha-box p { color: var(--text-muted); margin-bottom: 1.5rem; }
-
-  /* Modal de Detalhes dos Projetos */
-  .project-modal {
-    display: none; position: fixed; inset: 0; background: rgba(4,6,14,0.85);
-    backdrop-filter: blur(10px); z-index: 2000; justify-content: center; align-items: center; padding: 20px;
-  }
-  .project-modal.active { display: flex; }
-  .modal-box {
-    background: #0d1220; border: 1px solid var(--border-glow); border-radius: 16px;
-    max-width: 600px; width: 100%; padding: 2.5rem; position: relative;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-  }
-  .modal-close {
-    position: absolute; top: 18px; right: 20px; background: none; border: none;
-    color: var(--text-muted); font-size: 1.5rem; cursor: pointer;
-  }
-  .modal-box h3 { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold-bright); margin-bottom: 1rem; }
-  .modal-box p { color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; }
-
-  /* Footer */
+  /* FOOTER */
   footer {
     background: #030408; border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 60px 24px 30px; text-align: center; margin-top: 60px;
+    padding: 50px 24px; text-align: center; margin-top: 80px;
   }
-  .footer-logo { max-height: 65px; width: auto; margin-bottom: 1.5rem; }
+  .footer-logo { max-height: 60px; width: auto; margin-bottom: 1.5rem; }
   .footer-info {
     font-family: var(--font-mono); font-size: 0.88rem; color: var(--text-muted);
-    display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 1rem;
+    display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 0.8rem;
   }
-  .footer-info span.dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
-  .footer-sub { font-size: 0.8rem; color: var(--text-dim); }
-
-  @media (max-width: 860px) {
-    .hero { grid-template-columns: 1fr; padding-top: 130px; }
-    .malha-box { grid-template-columns: 1fr; padding: 1.8rem; }
-    nav ul { display: none; } /* Mobile simplificado */
-  }
+  .footer-info span.dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
 </style>
 </head>
 <body>
 
-<div class="bg-glow-1"></div>
-<div class="bg-glow-2"></div>
+<div class="bg-glow"></div>
 
 <!-- HEADER -->
 <header>
@@ -204,91 +141,53 @@
 
     <nav>
       <ul>
-        <!-- DROPDOWN COM TODOS OS PROJETOS -->
+        <li><a class="navlink" href="#sobre">Sobre a Holding</a></li>
+        <li><a class="navlink" href="#contato">Contato</a></li>
+        
+        <!-- MENU DROPDOWN COM OS DEMAIS PROJETOS -->
         <li class="dropdown">
-          <a href="#projetos" class="navlink">Projetos ▾</a>
+          <button class="dropdown-btn">Demais Projetos ▾</button>
           <div class="dropdown-menu">
-            <a href="javascript:void(0)" onclick="openProject('semicondutores')">Semicondutores Espirais</a>
-            <a href="javascript:void(0)" onclick="openProject('propulsao')">Propulsão Iônica</a>
-            <a href="javascript:void(0)" onclick="openProject('energia')">Matriz de Energia Matriz</a>
-            <a href="javascript:void(0)" onclick="openProject('mineracao')">Tecnologia de Mineração</a>
-            <a href="javascript:void(0)" onclick="openProject('biotec')">Biotecnologia Avançada</a>
-            <a href="javascript:void(0)" onclick="openProject('datacenter')">Data Center RURAL/GO</a>
+            <a href="projetos/semicondutores.html" target="_blank">Semicondutores Espirais</a>
+            <a href="projetos/propulsao-ionica.html" target="_blank">Propulsão Iônica</a>
+            <a href="projetos/matriz-energia.html" target="_blank">Matriz de Energia</a>
+            <a href="projetos/mineracao.html" target="_blank">Tecnologia de Mineração</a>
+            <a href="projetos/biotecnologia.html" target="_blank">Biotecnologia Avançada</a>
+            <a href="projetos/datacenter-goias.html" target="_blank">Data Center RURAL / GO</a>
+            <a href="projetos/gestao-ativos.html" target="_blank">Gestão de Ativos Globais</a>
+            <a href="projetos/telemetria.html" target="_blank">Telemetria de Alta Precisão</a>
+            <a href="projetos/criptografia.html" target="_blank">Criptografia Razão Áurea</a>
+            <a href="projetos/sensores.html" target="_blank">Sensores Biométricos</a>
+            <a href="projetos/redes.html" target="_blank">Redes de Baixa Latência</a>
+            <a href="projetos/drones.html" target="_blank">Sistemas de Drones</a>
+            <a href="projetos/logistica.html" target="_blank">Otimização Logística</a>
+            <a href="projetos/ia-preditiva.html" target="_blank">IA Preditiva Industrial</a>
+            <a href="projetos/aeroespacial.html" target="_blank">Módulos Aeroespaciais</a>
+            <a href="projetos/mimetismo.html" target="_blank">Processamento Mímico</a>
           </div>
         </li>
-
-        <!-- MALHA AUTÔNOMA FORA DO MENU (EM DESTAQUE) -->
-        <li>
-          <a href="#malha-autonoma" class="navlink navlink-highlight">Malha Autônoma ★</a>
-        </li>
-
-        <li><a class="navlink" href="#sobre">Sobre</a></li>
-        <li><a class="navlink" href="#especificacoes">Especificações</a></li>
-        <li><a class="navlink" href="#contato">Contato</a></li>
       </ul>
     </nav>
-
-    <a href="#contato" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Área Restrita</a>
   </div>
 </header>
 
 <main id="top">
+  <!-- PROJETO MALHA AUTÔNOMA NO TOPO E NO CENTRO DA PÁGINA -->
+  <section class="hero-center">
+    <div class="badge-main">Projeto Emblema — Destaque Central</div>
+    <h2><span>Malha Autônoma</span></h2>
+    <p class="description">
+      Arquitetura descentralizada de comunicação e processamento imune a pontos únicos de falha.
+      Operando com criptografia baseada na razão áurea e nós autossustentáveis para total soberania tecnológica.
+    </p>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div>
-      <div class="badge-tech">
-        <span>INPI: BR 10 2026 017489 0</span>
-      </div>
-      <h2>Engenharia em <span>Espiral</span> &amp; Alta Tecnologia</h2>
-      <p>Desenvolvemos soluções disruptivas em semicondutores, sistemas de energia e inteligência autônoma baseados na razão áurea.</p>
-      <div class="hero-buttons">
-        <a href="#malha-autonoma" class="btn btn-gradient">Conhecer Malha Autônoma</a>
-        <a href="#sobre" class="btn btn-outline">Sobre a Holding</a>
-      </div>
-    </div>
-    
-    <div class="hero-card-frame">
-      <p style="font-family: var(--font-mono); color: var(--primary-cyan); font-size: 0.8rem; margin-bottom: 0.5rem;">SISTEMA CENTRAL</p>
-      <h3 style="font-family: var(--font-title); font-size: 1.5rem; margin-bottom: 1rem;">Ciprianus Septem Ecosystem</h3>
-      <p style="font-size: 0.9rem; color: var(--text-muted);">Plataforma integrada de gestão, pesquisa e patentes tecnológicas atuando na convergência entre hardware avançado e algoritmos preditivos.</p>
+    <div class="malha-card">
+      <img src="assets/logo-icon.png" alt="Malha Autônoma Logo" style="max-width: 140px; margin: 0 auto 1.5rem; filter: drop-shadow(0 0 25px rgba(0,242,254,0.5));">
+      <p style="color: var(--text-muted); margin-bottom: 2rem;">INPI Patente: BR 10 2026 017489 0 — Ciprianus Septem</p>
+      <a href="projetos/malha-autonoma.html" target="_blank" class="btn-action">Acessar Documentação da Malha ↗</a>
     </div>
   </section>
-
-  <!-- SEÇÃO DESTAQUE: MALHA AUTÔNOMA -->
-  <section id="malha-autonoma">
-    <div class="malha-box">
-      <div>
-        <span style="font-family: var(--font-mono); color: var(--primary-cyan); font-size: 0.8rem;">PROJETO EMBLEMA</span>
-        <h3>Malha Autônoma</h3>
-        <p>Rede de comunicação e processamento descentralizado imune a falhas centralizadas, operando com arquitetura autossustentável e criptografia de chave áurea.</p>
-        <button class="btn btn-gradient" onclick="openProject('malha')">Ver Detalhes do Projeto</button>
-      </div>
-      <div style="text-align: center;">
-        <img src="assets/logo-icon.png" alt="Malha Autônoma" style="max-width: 180px; margin: 0 auto; filter: drop-shadow(0 0 20px rgba(0,242,254,0.4));">
-      </div>
-    </div>
-  </section>
-
-  <!-- SEÇÃO SOBRE -->
-  <section id="sobre">
-    <div class="section-title">
-      <h3>Presidente &amp; Visão</h3>
-      <p>Liderado por Moisés Jovino da Silva, o grupo Ciprianus Septem une vanguarda científica e rigor estrutural.</p>
-    </div>
-  </section>
-
 </main>
-
-<!-- MODAL PARA EXIBIR DETALHES DOS PROJETOS CLICADOS NO MENU -->
-<div class="project-modal" id="projectModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeProject()">&times;</button>
-    <h3 id="modalTitle">Título do Projeto</h3>
-    <p id="modalDescription">Descrição detalhada do projeto selecionado...</p>
-    <button class="btn btn-outline" onclick="closeProject()">Fechar</button>
-  </div>
-</div>
 
 <!-- RODAPÉ -->
 <footer>
@@ -297,60 +196,13 @@
   <div class="footer-info">
     <span>Desde 12/2016</span>
     <span class="dot"></span>
-    <span id="clima-info">João Pessoa-Paraíba / Brasil</span>
+    <span>João Pessoa - Paraíba / Brasil</span>
     <span class="dot"></span>
-    <span id="temp-val">28°C ☀️</span>
+    <span>28°C ☀️</span>
   </div>
 
-  <p class="footer-sub">© Ciprianus Septem Gestão &amp; Tecnologia Ltda. Todos os direitos reservados.</p>
+  <p style="font-size: 0.8rem; color: #606885;">© Ciprianus Septem Gestão &amp; Tecnologia Ltda. Todos os direitos reservados.</p>
 </footer>
-
-<script>
-  // Dados dos projetos para a janela interativa
-  const projetosData = {
-    'semicondutores': {
-      titulo: 'Semicondutores Espirais',
-      desc: 'Arquitetura inovadora de microchips fundamentada na geometria espiral, otimizando o fluxo de elétrons e reduzindo dissipação térmica.'
-    },
-    'propulsao': {
-      titulo: 'Propulsão Iônica',
-      desc: 'Sistemas de empuxo de alta eficiência energetica para aplicação em módulos aeroespaciais e mobilidade avançada.'
-    },
-    'energia': {
-      titulo: 'Matriz de Energia',
-      desc: 'Soluções de armazenamento e distribuição de energia limpa com eficiência baseada em algoritmos de balanceamento em tempo real.'
-    },
-    'mineracao': {
-      titulo: 'Tecnologia de Mineração',
-      desc: 'Processos sustentáveis de extração e refino de minérios estratégicos utilizando ressonância de precisão.'
-    },
-    'biotec': {
-      titulo: 'Biotecnologia Avançada',
-      desc: 'Pesquisa e desenvolvimento em estruturas biomiméticas aplicadas à saúde e síntese de materiais orgânicos.'
-    },
-    'datacenter': {
-      titulo: 'Data Center RURAL / Goiás',
-      desc: 'Infraestrutura de alta capacidade de processamento planejada para áreas estratégicas de alto padrão no estado de Goiás.'
-    },
-    'malha': {
-      titulo: 'Malha Autônoma',
-      desc: 'Rede distribuída independente e de alta resiliência para tráfego seguro de dados e controle infraestrutural sem dependência de nós centrais.'
-    }
-  };
-
-  function openProject(key) {
-    const p = projetosData[key];
-    if(p) {
-      document.getElementById('modalTitle').innerText = p.titulo;
-      document.getElementById('modalDescription').innerText = p.desc;
-      document.getElementById('projectModal').classList.add('active');
-    }
-  }
-
-  function closeProject() {
-    document.getElementById('projectModal').classList.remove('active');
-  }
-</script>
 
 </body>
 </html>
