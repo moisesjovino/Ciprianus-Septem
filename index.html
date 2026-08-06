@@ -3,38 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ciprianus Septem</title>
+  <title>Ciprianus Septem - Gestão & Tecnologia</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; background-color: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+    body { font-family: Arial, sans-serif; background-color: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; align-items: center; line-height: 1.6; }
     
-    /* CABEÇALHO COM IDIOMA E ORIGEM */
-    header { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #334155; }
-    .info-topo { display: flex; gap: 15px; font-size: 0.9rem; color: #94a3b8; }
-    .idioma-box select { background: #1e293b; color: #fff; border: 1px solid #475569; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+    header { width: 100%; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #334155; }
+    .info-topo { display: flex; gap: 20px; font-size: 0.95rem; color: #94a3b8; }
+    .idioma-box select { background: #1e293b; color: #fff; border: 1px solid #475569; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
     
-    /* LAYOUT EM DUAS FILEIRAS / COLUNAS */
-    main { width: 100%; max-width: 1100px; padding: 30px 20px; flex: 1; }
-    .grid-duas-fileiras { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    main { width: 100%; max-width: 1200px; padding: 30px 20px; flex: 1; }
     
-    /* CARDS */
-    .card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); }
-    .card h2 { color: #38bdf8; margin-bottom: 15px; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; }
-    .card p { color: #cbd5e1; line-height: 1.5; font-size: 0.95rem; margin-bottom: 15px; }
+    .hero { text-align: center; margin-bottom: 35px; padding: 30px 20px; background: #1e293b; border-radius: 12px; border: 1px solid #334155; }
+    .hero h1 { color: #38bdf8; font-size: 2.2rem; margin-bottom: 10px; }
+    .hero p { color: #cbd5e1; font-size: 1.1rem; max-width: 850px; margin: 0 auto; }
+
+    .grid-duas-fileiras { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 25px; margin-bottom: 40px; }
     
-    /* FORMULÁRIOS */
-    form { display: flex; flex-direction: column; gap: 12px; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; justify-content: space-between; }
+    .card h2 { color: #38bdf8; margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+    .card h3 { color: #f1f5f9; font-size: 1.05rem; margin: 15px 0 8px 0; border-left: 3px solid #38bdf8; padding-left: 8px; }
+    .card p, .card li { color: #cbd5e1; font-size: 0.92rem; line-height: 1.5; }
+    .card ul { margin-left: 18px; margin-bottom: 15px; }
+    
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.82rem; }
+    th, td { border: 1px solid #475569; padding: 8px; text-align: left; }
+    th { background: #0f172a; color: #38bdf8; }
+    td { color: #cbd5e1; }
+    
+    form { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
     input, textarea { width: 100%; padding: 10px; background: #0f172a; border: 1px solid #475569; border-radius: 6px; color: #fff; font-size: 0.9rem; }
-    button { background: #2563eb; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+    button { background: #2563eb; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; }
     button:hover { background: #1d4ed8; }
     
-    /* RODAPÉ */
+    /* MODAL DE INTERAÇÃO DOS BOTÕES */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; justify-content: center; align-items: center; }
+    .modal-content { background: #1e293b; border: 1px solid #38bdf8; border-radius: 12px; padding: 30px; max-width: 500px; width: 90%; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .modal-content h3 { color: #38bdf8; margin-bottom: 15px; font-size: 1.4rem; }
+    .modal-content p { color: #cbd5e1; margin-bottom: 20px; font-size: 0.95rem; }
+    .modal-btn-close { background: #e11d48; margin-top: 10px; }
+    .modal-btn-close:hover { background: #be123c; }
+
     footer { width: 100%; background: #0b0f19; border-top: 1px solid #1e293b; text-align: center; padding: 25px; color: #64748b; font-size: 0.85rem; margin-top: auto; }
   </style>
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
   <header>
     <div class="info-topo">
       <span>📍 João Pessoa - Paraíba / Brasil</span>
@@ -42,49 +56,151 @@
     </div>
     <div class="idioma-box">
       🌐
-      <select id="seletor-idioma">
-        <option value="pt">PT</option>
-        <option value="en">EN</option>
+      <select id="seletor-idioma" onchange="alterarIdioma(this.value)">
+        <option value="pt">Português (PT)</option>
+        <option value="en">English (EN)</option>
+        <option value="es">Español (ES)</option>
+        <option value="fr">Français (FR)</option>
+        <option value="de">Deutsch (DE)</option>
+        <option value="it">Italiano (IT)</option>
+        <option value="zh">中文 (ZH)</option>
+        <option value="ja">日本語 (JA)</option>
       </select>
     </div>
   </header>
 
-  <!-- CONTEÚDO PRINCIPAL (ORGANIZADO EM 2 COLUNAS/FILEIRAS) -->
   <main>
+    <div class="hero">
+      <h1>CIPRIANUS SEPTEM</h1>
+      <p>Gestão & Inovação Tecnológica Ltda. | Presidente: Moisés Jovino da Silva</p>
+      <p style="font-size: 0.95rem; color: #94a3b8; margin-top: 8px;">Desenvolvimento de Soluções e Tecnologias de Fronteira</p>
+    </div>
+
     <div class="grid-duas-fileiras">
       
-      <!-- IA CHROMO -->
+      <!-- PROJETO IA CHRONO & APE -->
       <div class="card">
-        <h2>🤖 IA Chromo</h2>
-        <p>Sistema de Inteligência Artificial com arquitetura Zero Trust integrada ao firmware e microcódigo do chip AP-E.</p>
-        <button type="button">Acessar IA Chromo</button>
+        <div>
+          <h2>🤖 IA Chrono & Chip APE</h2>
+          <p>Central Multimodal Completa de IA e Arquitetura de Processamento Espiral (APE - Patente BR 10 2026 017489 0).</p>
+          <h3>Especificações</h3>
+          <ul>
+            <li>Topologia 3D em geometrias espiraladas (1nm a 11nm).</li>
+            <li>Processamento centrípeto-centrífugo via coordenadas polares (r, θ).</li>
+            <li>Início Zero Trust integrado ao firmware do chip.</li>
+            <li>Geração automática de mídias e roteiros serverless.</li>
+          </ul>
+        </div>
+        <button type="button" onclick="abrirModal('IA Chrono & Chip APE', 'Acesse o módulo interativo de processamento e inteligência artificial multimodal do ecossistema Ciprianus Septem.')">Acessar Plataforma IA Chrono</button>
       </div>
 
-      <!-- SEÇÕES INSTITUCIONAIS -->
+      <!-- PROJETO 01: MICROARQUITETURA EM ESPIRAL -->
       <div class="card">
-        <h2>📜 Registros & Validações</h2>
-        <p>Acesse as documentações e seções institucionais oficiais da Ciprianus Septem.</p>
-        <button type="button">Consultar Padrasto e Assinei</button>
+        <div>
+          <h2>🌀 Microarquitetura em Espiral</h2>
+          <p>Ciprianus Silicon - Gold Edition com gravação de padrões baseados na Razão Áurea (φ).</p>
+          <h3>Insumos & Infraestrutura</h3>
+          <table>
+            <tr><th>Insumo</th><th>Especificação</th></tr>
+            <tr><td>Scanner EUV</td><td>Resolução 7nm em Fibonacci</td></tr>
+            <tr><td>Wire Bonding</td><td>Fios de Ouro 24k (25 micra)</td></tr>
+            <tr><td>Sistemas ALD</td><td>Camadas de Grafeno e Silício</td></tr>
+            <tr><td>Sala Limpa</td><td>Classe 1 para Semicondutores</td></tr>
+          </table>
+        </div>
+        <button type="button" onclick="abrirModal('Microarquitetura em Espiral', 'Carregando os protocolos técnicos de gravação e fabricação de semicondutores em razão áurea...')">Ver Protocolo de Microarquitetura</button>
       </div>
 
-      <!-- FALE CONOSCO -->
+      <!-- PROJETO 02: PROPULSÃO IÔNICA -->
+      <div class="card">
+        <div>
+          <h2>⚡ Propulsão Iônica (Aviação Sem Motores)</h2>
+          <p>Sistemas de vetorização magnética e ionização direta de ar para propulsão de alta eficiência.</p>
+          <h3>Engenharia de Voo</h3>
+          <ul>
+            <li>Geradores HV 0-100kV DC para ionização.</li>
+            <li>Supercondutores YBCO para campo de Lorentz.</li>
+            <li>Câmara de Vácuo Térmico simuladora de altitude.</li>
+            <li>Fuselagem em compósitos de Carbono/Kevlar.</li>
+          </ul>
+        </div>
+        <button type="button" onclick="abrirModal('Propulsão Iônica', 'Redirecionando para as especificações do sistema de aviação eletro-hidrodinâmica e ionização.')">Detalhes do Projeto de Propulsão</button>
+      </div>
+
+      <!-- PROJETO 03: BATERIA 10X NEXUS ENERGY -->
+      <div class="card">
+        <div>
+          <h2>🔋 Bateria 10X (Nexus Energy)</h2>
+          <p>Armazenamento de ultra-densidade energética com eletrólitos sólidos cerâmicos.</p>
+          <h3>Infraestrutura de Testes</h3>
+          <ul>
+            <li>Prensa Isostática de 20.000 PSI.</li>
+            <li>Ciclador de Alta Potência 1.200V para carga ultrarrápida.</li>
+          </ul>
+        </div>
+        <button type="button" onclick="abrirModal('Bateria 10X (Nexus Energy)', 'Abrindo relatório de testes de carga ultrarrápida e densidade energética dos eletrólitos cerâmicos.')">Ver Especificações de Energia</button>
+      </div>
+
+      <!-- PROJETO 04 & 05: AEGIS MESH & DATA CENTER -->
+      <div class="card">
+        <div>
+          <h2>🛡️ Domo Aegis & Data Center Eco</h2>
+          <p>Proteção de perímetro e computação autônoma de emissão zero.</p>
+          <h3>Aegis Mesh & Data Center</h3>
+          <ul>
+            <li><strong>Aegis Mesh:</strong> Antenas AESA e cancelamento de fase 180°.</li>
+            <li><strong>Data Center:</strong> Resfriamento por imersão em líquido dielétrico e geradores Peltier.</li>
+          </ul>
+        </div>
+        <button type="button" onclick="abrirModal('Domo Aegis & Data Center Eco', 'Consultando os nós da rede Aegis Mesh e o status operacional do Data Center Ecossustentável.')">Consultar Infraestrutura</button>
+      </div>
+
+      <!-- PROJETO 06: MINERAÇÃO & REFINO DE TERRAS RARAS -->
+      <div class="card">
+        <div>
+          <h2>💎 Mineração Autônoma & Refino (US$ 60M)</h2>
+          <p>Protocolo completo de extração 5G e refino de Química Verde em ciclo fechado.</p>
+          <h3>Módulos Operacionais</h3>
+          <ul>
+            <li><strong>Módulo A (Mineração):</strong> Frota elétrica autônoma guiada por IA em rede 5G privada.</li>
+            <li><strong>Módulo B (Refino):</strong> 50 ultracentrífugas industriais e Cobots para separação molecular de ETRs.</li>
+          </ul>
+        </div>
+        <button type="button" onclick="abrirModal('Mineração Autônoma & Refino', 'Acessando o Dossiê de investimentos e a maquete digital dos complexos A e B de terras raras.')">Acessar Dossiê de Mineração</button>
+      </div>
+
+      <!-- REGISTROS, VALIDAÇÕES & CADASTRO -->
+      <div class="card">
+        <div>
+          <h2>📜 Registros, Validações & Auditoria</h2>
+          <p>Acesse os módulos oficiais institucionais de validação, integridade documental e governança.</p>
+          <h3>Módulos de Conformidade</h3>
+          <ul>
+            <li>Consultas de status e auditorias criptográficas (SHA-256 Chain).</li>
+            <li>Validações Cadastrais e Plataforma Assinei.</li>
+          </ul>
+        </div>
+        <button type="button" onclick="abrirModal('Consultas & Validação Cadastral', 'Conectando aos serviços de checagem documental e validação do sistema Assinei.')">Consultar Cadastro e Assinei</button>
+      </div>
+
+      <!-- FORMULÁRIO FALE CONOSCO -->
       <div class="card">
         <h2>✉️ Fale Conosco</h2>
-        <form>
+        <form onsubmit="enviarFormulario(event, 'Fale Conosco')">
           <input type="text" placeholder="Seu Nome" required>
           <input type="email" placeholder="Seu E-mail" required>
-          <textarea rows="3" placeholder="Sua mensagem..." required></textarea>
+          <textarea rows="3" placeholder="Sua mensagem ou solicitação..." required></textarea>
           <button type="submit">Enviar Mensagem</button>
         </form>
       </div>
 
-      <!-- TRABALHE CONOSCO -->
+      <!-- FORMULÁRIO TRABALHE CONOSCO -->
       <div class="card">
         <h2>💼 Trabalhe Conosco</h2>
-        <form>
+        <form onsubmit="enviarFormulario(event, 'Trabalhe Conosco')">
           <input type="text" placeholder="Nome Completo" required>
           <input type="email" placeholder="E-mail" required>
-          <input type="text" placeholder="Área de Atuação / Cargo" required>
+          <input type="text" placeholder="Área de Atuação / Especialidade" required>
           <button type="submit">Enviar Candidatura</button>
         </form>
       </div>
@@ -92,12 +208,51 @@
     </div>
   </main>
 
-  <!-- RODAPÉ -->
+  <!-- MODAL DE EXIBIÇÃO DE INFORMAÇÕES -->
+  <div id="modal-sistema" class="modal-overlay">
+    <div class="modal-content">
+      <h3 id="modal-titulo">Título</h3>
+      <p id="modal-texto">Descrição...</p>
+      <button type="button" class="modal-btn-close" onclick="fecharModal()">Fechar Janela</button>
+    </div>
+  </div>
+
   <footer>
-    <p>Ciprianus Septem | João Pessoa - Paraíba / Brasil</p>
+    <p>Ciprianus Septem Gestão & Tecnologia Ltda. | João Pessoa - Paraíba / Brasil</p>
     <p>© 2026 Ciprianus Septem. Todos os direitos reservados.</p>
   </footer>
 
+  <script>
+    function abrirModal(titulo, texto) {
+      document.getElementById('modal-titulo').innerText = titulo;
+      document.getElementById('modal-texto').innerText = texto;
+      document.getElementById('modal-sistema').style.display = 'flex';
+    }
+
+    function fecharModal() {
+      document.getElementById('modal-sistema').style.display = 'none';
+    }
+
+    function enviarFormulario(event, tipo) {
+      event.preventDefault();
+      abrirModal(tipo, 'Mensagem enviada com sucesso! A equipe da Ciprianus Septem entrará em contato em breve.');
+      event.target.reset();
+    }
+
+    function alterarIdioma(sigla) {
+      const idiomas = {
+        'pt': 'Português',
+        'en': 'English',
+        'es': 'Español',
+        'fr': 'Français',
+        'de': 'Deutsch',
+        'it': 'Italiano',
+        'zh': '中文',
+        'ja': '日本語'
+      };
+      abrirModal('Alteração de Idioma', 'Idioma selecionado: ' + idiomas[sigla] + '. Recarregando tradução do sistema...');
+    }
+  </script>
+
 </body>
 </html>
-           
