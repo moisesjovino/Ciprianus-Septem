@@ -1,542 +1,103 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyprianus Septem Gestão & Tecnologia Ltda.</title>
-    <style>
-        :root {
-            --navy-dark: #070d19;
-            --navy-main: #0b1b3d;
-            --navy-light: #162a56;
-            --gold-main: #d4af37;
-            --gold-hover: #f3cf55;
-            --bg-light: #f4f6f9;
-            --text-dark: #1c2536;
-            --text-light: #ffffff;
-            --text-muted: #8a99ad;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--navy-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* HEADER & MENU */
-        header {
-            background-color: rgba(7, 13, 25, 0.95);
-            border-bottom: 2px solid var(--gold-main);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(8px);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--gold-main);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold-main);
-            font-weight: bold;
-        }
-
-        .logo-text h1 {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            letter-spacing: 1px;
-        }
-
-        .logo-text span {
-            font-size: 0.75rem;
-            color: var(--gold-main);
-            display: block;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--gold-main);
-        }
-
-        /* SELETOR DE IDIOMAS */
-        .lang-selector {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 4px;
-            padding: 0.3rem 0.6rem;
-        }
-
-        .lang-selector select {
-            background: transparent;
-            border: none;
-            color: var(--gold-main);
-            outline: none;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        .lang-selector select option {
-            background-color: var(--navy-dark);
-            color: var(--text-light);
-        }
-
-        .btn-gold {
-            background: linear-gradient(135deg, var(--gold-main), #aa841e);
-            color: var(--navy-dark);
-            padding: 0.5rem 1.2rem;
-            border-radius: 4px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s, background 0.3s;
-        }
-
-        .btn-gold:hover {
-            background: linear-gradient(135deg, var(--gold-hover), var(--gold-main));
-            transform: translateY(-2px);
-        }
-
-        /* HERO SECTION */
-        .hero {
-            padding: 160px 2rem 100px;
-            text-align: center;
-            background: radial-gradient(circle at center, var(--navy-light) 0%, var(--navy-dark) 70%);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .hero h2 {
-            font-size: 2.8rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-
-        .hero h2 span {
-            color: var(--gold-main);
-        }
-
-        .hero p {
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        /* SECTIONS GENERAL */
-        section {
-            padding: 80px 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h3 {
-            font-size: 2rem;
-            color: var(--gold-main);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-        }
-
-        /* CARDS GRID */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background-color: var(--navy-main);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 8px;
-            padding: 2rem;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold-main);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            font-size: 0.75rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
-
-        .badge-exec { background-color: rgba(0, 200, 83, 0.2); color: #00e676; }
-        .badge-dev { background-color: rgba(255, 171, 0, 0.2); color: #ffab00; }
-        .badge-soon { background-color: rgba(41, 121, 255, 0.2); color: #2979ff; }
-
-        .card h4 {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-bottom: 0.8rem;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* PLANOS & PRICING */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .price-card {
-            background-color: var(--navy-main);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 8px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-        }
-
-        .price-card.featured {
-            border: 2px solid var(--gold-main);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-        }
-
-        .price-card h4 {
-            font-size: 1.5rem;
-            color: var(--gold-main);
-            margin-bottom: 1rem;
-        }
-
-        .price-card ul {
-            list-style: none;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-
-        .price-card li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* FORMS & LOGIN */
-        .forms-wrapper {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            background-color: var(--navy-main);
-            padding: 3rem;
-            border-radius: 8px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .form-box h4 {
-            color: var(--gold-main);
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .input-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 0.4rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .input-group input, .input-group textarea, .input-group select {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: var(--navy-dark);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 4px;
-            color: var(--text-light);
-            outline: none;
-        }
-
-        .input-group input:focus, .input-group textarea:focus {
-            border-color: var(--gold-main);
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: #040810;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 3rem 2rem 1.5rem;
-            text-align: center;
-        }
-
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 1rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciprianus Septem</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background-color: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+    
+    /* CABEÇALHO COM IDIOMA E ORIGEM */
+    header { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #334155; }
+    .info-topo { display: flex; gap: 15px; font-size: 0.9rem; color: #94a3b8; }
+    .idioma-box select { background: #1e293b; color: #fff; border: 1px solid #475569; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+    
+    /* LAYOUT EM DUAS FILEIRAS / COLUNAS */
+    main { width: 100%; max-width: 1100px; padding: 30px 20px; flex: 1; }
+    .grid-duas-fileiras { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    
+    /* CARDS */
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); }
+    .card h2 { color: #38bdf8; margin-bottom: 15px; font-size: 1.25rem; display: flex; align-items: center; gap: 8px; }
+    .card p { color: #cbd5e1; line-height: 1.5; font-size: 0.95rem; margin-bottom: 15px; }
+    
+    /* FORMULÁRIOS */
+    form { display: flex; flex-direction: column; gap: 12px; }
+    input, textarea { width: 100%; padding: 10px; background: #0f172a; border: 1px solid #475569; border-radius: 6px; color: #fff; font-size: 0.9rem; }
+    button { background: #2563eb; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+    button:hover { background: #1d4ed8; }
+    
+    /* RODAPÉ */
+    footer { width: 100%; background: #0b0f19; border-top: 1px solid #1e293b; text-align: center; padding: 25px; color: #64748b; font-size: 0.85rem; margin-top: auto; }
+  </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">CS</div>
-                <div class="logo-text">
-                    <h1>Cyprianus Septem</h1>
-                    <span>Gestão & Tecnologia Ltda.</span>
-                </div>
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#planos">Planos</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                    <li><a href="#acesso" class="btn-gold">Área de Acesso</a></li>
-                    <li>
-                        <div class="lang-selector">
-                            <span>🌐</span>
-                            <select aria-label="Selecione o Idioma">
-                                <option value="pt-BR">PT</option>
-                                <option value="en-US">EN</option>
-                                <option value="es-ES">ES</option>
-                                <option value="zh-CN">ZH</option>
-                            </select>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="info-topo">
+      <span>📍 João Pessoa - Paraíba / Brasil</span>
+      <span>🗓️ Desde 12/2016</span>
+    </div>
+    <div class="idioma-box">
+      🌐
+      <select id="seletor-idioma">
+        <option value="pt">PT</option>
+        <option value="en">EN</option>
+      </select>
+    </div>
+  </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <h2>Soberania Digital & <span>Inovação Disruptiva</span></h2>
-        <p>Desenvolvemos tecnologias proprietárias de comunicação em malha autônoma, semicondutores avançados, sustentabilidade e biotecnologia de alto impacto.</p>
-        <a href="#projetos" class="btn-gold">Explorar Portfólio de Tecnologia</a>
-    </section>
+  <!-- CONTEÚDO PRINCIPAL (ORGANIZADO EM 2 COLUNAS/FILEIRAS) -->
+  <main>
+    <div class="grid-duas-fileiras">
+      
+      <!-- IA CHROMO -->
+      <div class="card">
+        <h2>🤖 IA Chromo</h2>
+        <p>Sistema de Inteligência Artificial com arquitetura Zero Trust integrada ao firmware e microcódigo do chip AP-E.</p>
+        <button type="button">Acessar IA Chromo</button>
+      </div>
 
-    <!-- SOBRE -->
-    <section id="sobre">
-        <div class="section-title">
-            <h3>Sobre a Cyprianus Septem</h3>
-            <p>Engenharia de ponta, independência tecnológica e pegada ambiental zero.</p>
-        </div>
-        <p style="text-align: center; max-width: 900px; margin: 0 auto; color: var(--text-muted);">
-            A <strong>Cyprianus Septem Gestão & Tecnologia Ltda.</strong> é uma empresa focada no desenvolvimento de infraestruturas virtuais e físicas de última geração. Atuamos desde a arquitetura de semicondutores e redes mesh descentralizadas até biotecnologia e mineração sustentável, garantindo resiliência, segurança absoluta e inovação contínua.
-        </p>
-    </section>
+      <!-- SEÇÕES INSTITUCIONAIS -->
+      <div class="card">
+        <h2>📜 Registros & Validações</h2>
+        <p>Acesse as documentações e seções institucionais oficiais da Ciprianus Septem.</p>
+        <button type="button">Consultar Padrasto e Assinei</button>
+      </div>
 
-    <!-- PROJETOS -->
-    <section id="projetos">
-        <div class="section-title">
-            <h3>Portfólio de Projetos</h3>
-            <p>Conheça nossas 17 soluções estratégicas divididas por ecossistema</p>
-        </div>
+      <!-- FALE CONOSCO -->
+      <div class="card">
+        <h2>✉️ Fale Conosco</h2>
+        <form>
+          <input type="text" placeholder="Seu Nome" required>
+          <input type="email" placeholder="Seu E-mail" required>
+          <textarea rows="3" placeholder="Sua mensagem..." required></textarea>
+          <button type="submit">Enviar Mensagem</button>
+        </form>
+      </div>
 
-        <!-- Categoria 1: Semicondutores, Defesa e Mobilidade -->
-        <h4 style="color: var(--gold-main); margin-bottom: 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 0.5rem;">Disruptivos, Semicondutores & Defesa</h4>
-        <div class="grid" style="margin-bottom: 3rem;">
-            <div class="card">
-                <span class="badge badge-exec">Em Execução / Patenteado</span>
-                <h4>Chip Espiral</h4>
-                <p>Arquitetura de semicondutores com geometria em espiral e fluxo contínuo. Elimina ciclos de clock convencionais, reduzindo latência em 40% com alta eficiência (Patente BR 10 2026 017489 0).</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-exec">Em Execução</span>
-                <h4>Malha Autônoma (Mesh)</h4>
-                <p>Infraestrutura de comunicação peer-to-peer imune a falhas de operadoras e apagões, operando totalmente sem servidores centrais.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-dev">Em Desenvolvimento</span>
-                <h4>Domo Magnético / Aegis Mesh</h4>
-                <p>Blindagem eletromagnética escalável para proteção pessoal, veículos, aeronaves, residências e defesa soberana de nações.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-dev">Em Desenvolvimento</span>
-                <h4>Avião sem Motores / Propulsão Iônica</h4>
-                <p>Aeronave impulsionada por vento iônico (eletro-hidrodinâmica), sem partes móveis, combustíveis fósseis ou emissão de ruído.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-dev">Em Desenvolvimento</span>
-                <h4>Veículo Voador Flutuante (AeroDrive)</h4>
-                <p>Transporte por levitação eletromagnética e sustentação vetorizada com decolagem vertical e navegação autônoma.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-dev">Em Desenvolvimento</span>
-                <h4>Veículo Elétrico sem Motor (Zero-Engine)</h4>
-                <p>Automóvel movido a indução magnética direta acoplada às rodas, eliminando o bloco mecânico tradicional e reduzindo atrito a zero.</p>
-            </div>
-        </div>
+      <!-- TRABALHE CONOSCO -->
+      <div class="card">
+        <h2>💼 Trabalhe Conosco</h2>
+        <form>
+          <input type="text" placeholder="Nome Completo" required>
+          <input type="email" placeholder="E-mail" required>
+          <input type="text" placeholder="Área de Atuação / Cargo" required>
+          <button type="submit">Enviar Candidatura</button>
+        </form>
+      </div>
 
-        <!-- Categoria 2: Energia e Mineração -->
-        <h4 style="color: var(--gold-main); margin-bottom: 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 0.5rem;">Energia, Mineração & Sustentabilidade</h4>
-        <div class="grid" style="margin-bottom: 3rem;">
-            <div class="card">
-                <span class="badge badge-dev">Em Desenvolvimento</span>
-                <h4>Nexus MagFilm</h4>
-                <p>Manta indutiva e fotomagnética flexível para captação contínua de energia ambiental, substituindo painéis fotovoltaicos rígidos.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-dev">Em Desenvolvimento</span>
-                <h4>Bateria 10X+ / Nexus Energy</h4>
-                <p>Células de armazenamento de energia com densidade 10 vezes superior às baterias convencionais e carregamento ultrarrápido.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-dev">Em Desenvolvimento</span>
-                <h4>Mineradora a Seco</h4>
-                <p>Sistema de extração mineral com zero uso de água e eliminação completa de barragens de rejeitos.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-exec">Em Execução</span>
-                <h4>Refino de Terras Raras (99%+)</h4>
-                <p>Purificação de precisão de elementos críticos para abastecer a indústria de semicondutores e hardware avançado.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-soon">Em Breve</span>
-                <h4>Data Center Sustentável</h4>
-                <p>Centro de processamento neutro em carbono com matriz energética autônoma e refrigeração limpa em circuito fechado.</p>
-            </div>
-        </div>
+    </div>
+  </main>
 
-        <!-- Categoria 3: Robótica e Saúde -->
-        <h4 style="color: var(--gold-main); margin-bottom: 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 0.5rem;">Robótica, Biotecnologia & Saúde</h4>
-        <div class="grid" style="margin-bottom: 3rem;">
-            <div class="card">
-                <span class="badge badge-exec">Em Execução</span>
-                <h4>Robótica Humanoide Cyprianus</h4>
-                <p>Androides com revestimento de pele sintética realista e articulações biomiméticas fluidas, projetados para executar atividades em nível humano.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-dev">Em Desenvolvimento</span>
-                <h4>Cyprianus BioPet</h4>
-                <p>Plataforma de preservação celular e recriação biotecnológica de animais de estimação com correspondência genética idêntica.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-soon">Em Planejamento</span>
-                <h4>Hospital da Vida / Rejuvenescimento</h4>
-                <p>Centro de medicina regenerativa, biotecnologia aplicada e otimização biológica de alta precisão.</p>
-            </div>
-        </div>
+  <!-- RODAPÉ -->
+  <footer>
+    <p>Ciprianus Septem | João Pessoa - Paraíba / Brasil</p>
+    <p>© 2026 Ciprianus Septem. Todos os direitos reservados.</p>
+  </footer>
 
-        <!-- Categoria 4: Produtos de Prateleira -->
-        <h4 style="color: var(--gold-main); margin-bottom: 1.5rem; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 0.5rem;">Projetos de Prateleira (Soluções Prontas)</h4>
-        <div class="grid">
-            <div class="card">
-                <span class="badge badge-exec">Em Execução</span>
-                <h4>Pre-Fácil</h4>
-                <p>Plataforma ágil de pré-cadastramentos, validação instantânea e triagem simplificada para serviços corporativos e públicos.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-soon">Em Breve</span>
-                <h4>AgroSmart Mesh</h4>
-                <p>Módulo de telemetria rural off-grid para monitoramento de solo, clima e máquinas agrícolas sem necessidade de sinal de celular.</p>
-            </div>
-            <div class="card">
-                <span class="badge badge-soon">Em Breve</span>
-                <h4>Connect P2P</h4>
-                <p>Software corporativo de comunicação privada criptografada de ponta a ponta sem servidores intermediários.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PLANOS E PRECIFICAÇÃO -->
-    <section id="planos">
-        <div class="section-title">
-            <h3>Planos & Precificação</h3>
-            <p>Modelos flexíveis para acesso à Malha Autônoma e Plataformas</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="price-card">
-                <h4>Comunitário</h4>
-                <p style="color: var(--text-muted);">Gratuito (Freemium)</p>
-                <ul>
-                    <li>Conectividade Peer-to-Peer básica</li>
-                    <li>Participação como Nó Comunitário</li>
-                    <li>Troca de mensagens essenciais</li>
-                </ul>
-                <a href="#acesso" class="btn-gold" style="display: block; margin-top: 1rem;">Cadastrar</a>
-            </div>
-            <div class="price-card featured">
-                <h4>Profissional</h4>
-                <p style="color: var(--gold-main);">Assinatura Mensal / Anual</p>
-                <ul>
-                    <li>Prioridade de tráfego na malha</li>
-                    <li>Maior largura de banda</li>
-                    <li>Módulos de telemetria (Agro/Empresas)</li>
-                    <li>Suporte técnico dedicado</li>
-                </ul>
-                <a href="#acesso" class="btn-gold" style="display: block; margin-top: 1rem;">Assinar Agora</a>
-            </div>
-            <div class="price-card">
-                <h4>Enterprise</h4>
-                <p style="color: var(--text-muted);">Sob Consulta</p>
-                <ul>
-                    <li>Implantação de Malha Privada</li>
-                    <li>Nós dedicados de alto desempenho</li>
-                    <li>Criptografia customizada</li>
-                    <li>SLA de atendimento 24/7</li>
-                </ul>
-                <a href="#contato" class="btn-gold" style="display: block; margin-top: 1rem;">Falar com Consultor</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FORMU
+</body>
+</html>
+           
