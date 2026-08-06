@@ -16,13 +16,13 @@
             --text-muted: #94a3b8;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Georgia', 'Times New Roman', serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Georgia', serif; }
         body { background-color: var(--bg-dark); color: var(--text); line-height: 1.6; }
         a { text-decoration: none; color: inherit; }
 
         .app-container { display: flex; min-height: 100vh; }
 
-        /* MENU LATERAL — RECOLHÍVEL */
+        /* MENU LATERAL */
         aside {
             width: 260px;
             background: linear-gradient(180deg, var(--bg-panel), var(--bg-dark));
@@ -50,7 +50,7 @@
         }
 
         .sidebar-menu { list-style: none; display: none; }
-        .sidebar-menu.open { display: block; } /* CLASSE QUE FAZ ABRIR */
+        .sidebar-menu.aberto { display: block; }
         .sidebar-menu li { margin-bottom: 0.4rem; }
         .sidebar-menu a {
             display: block;
@@ -85,13 +85,8 @@
             left: 3rem;
             top: 50%;
             transform: translateY(-50%);
-            display: flex;
-            align-items: center;
-        }
-        .logo-container img {
-            height: 60px;
-            width: auto;
-            object-fit: contain;
+            font-size: 2rem;
+            color: var(--gold);
         }
 
         .brand-name {
@@ -99,15 +94,8 @@
             color: var(--gold);
             letter-spacing: 2px;
         }
-        .brand-name h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-        .brand-name p {
-            font-size: 0.9rem;
-            color: var(--gold-soft);
-            letter-spacing: 1px;
-        }
+        .brand-name h1 { font-size: 1.5rem; font-weight: 600; }
+        .brand-name p { font-size: 0.9rem; color: var(--gold-soft); }
 
         .lang-top {
             position: absolute;
@@ -126,7 +114,6 @@
             color: var(--text);
             outline: none;
             font-size: 0.85rem;
-            cursor: pointer;
         }
 
         .hero {
@@ -149,19 +136,17 @@
             padding: 0.35rem 1.2rem;
             border-radius: 20px;
             margin-bottom: 2rem;
-            letter-spacing: 1px;
         }
 
         .hero h2 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             color: var(--gold);
             margin-bottom: 1.5rem;
-            letter-spacing: 3px;
         }
 
         .hero p {
             max-width: 800px;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
             line-height: 1.8;
@@ -176,9 +161,8 @@
             border: none;
             font-size: 1rem;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.3s;
         }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212,175,55,0.25); }
+        .btn-main:hover { transform: translateY(-2px); }
 
         .section-box {
             padding: 3rem;
@@ -219,6 +203,16 @@
         }
         .radio-group label { color: var(--text-muted); cursor: pointer; }
 
+        #mensagem-sucesso {
+            display: none;
+            text-align: center;
+            color: #00e676;
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: rgba(0,230,118,0.1);
+            border-radius: 6px;
+        }
+
         footer {
             background: #040810;
             border-top: 1px solid var(--gold-pale);
@@ -231,15 +225,8 @@
             padding-bottom: 1.5rem;
             border-bottom: 1px solid var(--gold-pale);
         }
-        .footer-brand h2 {
-            font-size: 1.4rem;
-            color: var(--gold);
-            letter-spacing: 2px;
-        }
-        .footer-brand p {
-            font-size: 0.85rem;
-            color: var(--gold-soft);
-        }
+        .footer-brand h2 { font-size: 1.4rem; color: var(--gold); }
+        .footer-brand p { font-size: 0.85rem; color: var(--gold-soft); }
 
         .footer-grid {
             display: grid;
@@ -248,23 +235,14 @@
             margin-bottom: 2rem;
         }
 
-        .footer-col h4 {
-            color: var(--gold);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
+        .footer-col h4 { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; }
         .footer-col ul { list-style: none; }
         .footer-col li { margin-bottom: 0.6rem; }
-        .footer-col a { color: var(--text-muted); font-size: 0.92rem; transition: color 0.2s; }
+        .footer-col a { color: var(--text-muted); font-size: 0.92rem; }
         .footer-col a:hover { color: var(--gold-soft); text-decoration: underline; }
 
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            font-size: 1.4rem;
-            margin-top: 0.5rem;
-        }
+        .social-icons { display: flex; gap: 1rem; font-size: 1.4rem; margin-top: 0.5rem; }
+        .social-icons a { color: var(--text-muted); }
         .social-icons a:hover { color: var(--gold); }
 
         .footer-bottom {
@@ -274,28 +252,13 @@
             color: var(--text-muted);
             font-size: 0.85rem;
         }
-
-        .protected {
-            margin-top: 0.8rem;
-            color: var(--gold);
-            font-weight: 500;
-        }
-
-        #mensagem-sucesso {
-            display: none;
-            text-align: center;
-            color: #00e676;
-            margin-top: 1rem;
-            padding: 0.8rem;
-            background: rgba(0,230,118,0.1);
-            border-radius: 6px;
-        }
+        .protected { margin-top: 0.8rem; color: var(--gold); font-weight: 500; }
 
         @media(max-width: 900px) {
             aside { position: relative; width: 100%; height: auto; }
             main { margin-left: 0; }
             header { flex-direction: column; gap: 1rem; padding-top: 5rem; }
-            .logo-container { position: static; transform: none; justify-content: center; }
+            .logo-container { position: static; transform: none; }
             .lang-top { position: static; }
         }
     </style>
@@ -304,14 +267,13 @@
 
 <div class="app-container">
 
-    <!-- MENU LATERAL -->
     <aside>
         <button class="menu-toggle" id="botaoMenu">
             <span>📂 Projetos</span>
             <span id="seta">▼</span>
         </button>
         <ul class="sidebar-menu" id="listaProjetos">
-            <li><a href="#" class="active">🏠 Malha Autônoma</a></li>
+            <li><a href="#malha" class="active">🏠 Malha Autônoma</a></li>
             <li><a href="#chip">Chip Espiral AP-E</a></li>
             <li><a href="#domo">Domo Magnético Aegis</a></li>
             <li><a href="#aviao">Avião sem Motores</a></li>
@@ -326,15 +288,11 @@
     <main>
 
         <header>
-            <div class="logo-container">
-                <img src="logo.png" alt="Logo Ciprianus Septem">
-            </div>
-
+            <div class="logo-container">★</div>
             <div class="brand-name">
                 <h1>CIPRIANUS SEPTEM</h1>
                 <p>Gestão e Inovação Tecnologia Ltda.</p>
             </div>
-
             <div class="lang-top">
                 <span>🌐</span>
                 <select>
@@ -350,70 +308,60 @@
             </div>
         </header>
 
-        <section class="hero">
+        <section class="hero" id="malha">
             <span class="hero-badge">PROJETO EMBLEMA</span>
             <h2>Malha Autônoma</h2>
             <p>Arquitetura descentralizada de comunicação e processamento imune a pontos únicos de falha. Operando com criptografia baseada na razão áurea e nós autossustentáveis para total soberania tecnológica. Sem servidores centrais, sem dependência de operadoras, sem limites.</p>
             <button class="btn-main">Ver Documentação Completa</button>
         </section>
 
-        <!-- CADASTRO FUNCIONAL -->
         <section class="section-box">
             <h3 class="section-title">Valide seu Acesso</h3>
             <form class="form-grid" id="formularioAcesso">
                 <input type="text" id="nome" placeholder="Seu Nome Completo" required>
                 <input type="email" id="email" placeholder="Seu E-mail" required>
                 <input type="tel" id="telefone" placeholder="Seu Telefone com DDD" required>
-
-                <div style="text-align:center; color:var(--text-muted); margin:0.5rem 0;">
-                    Receber código de autenticação via:
-                </div>
+                <div style="text-align:center; color:var(--text-muted); margin:0.5rem 0;">Receber código via:</div>
                 <div class="radio-group">
-                    <label><input type="radio" name="receberPor" value="email" checked> E-mail</label>
-                    <label><input type="radio" name="receberPor" value="sms"> SMS</label>
+                    <label><input type="radio" name="via" value="email" checked> E-mail</label>
+                    <label><input type="radio" name="via" value="sms"> SMS</label>
                 </div>
-
-                <button type="submit" class="btn-main">Solicitar Código de Acesso</button>
-                <div id="mensagem-sucesso">✅ Solicitação enviada! Verifique seu E-mail ou SMS.</div>
+                <button type="submit" class="btn-main">Solicitar Código</button>
+                <div id="mensagem-sucesso">✅ Solicitação registrada! Em breve entraremos em contato.</div>
             </form>
         </section>
 
-        <!-- RODAPÉ -->
         <footer>
             <div class="footer-brand">
                 <h2>CIPRIANUS SEPTEM</h2>
                 <p>Gestão e Inovação Tecnologia Ltda.</p>
             </div>
-
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Faça uma Pergunta</h4>
                     <form class="form-grid" style="gap:0.5rem;">
-                        <textarea placeholder="Escreva aqui sua pergunta..." rows="3"></textarea>
-                        <button type="submit" class="btn-main" style="padding:0.6rem; font-size:0.9rem;">Enviar Pergunta</button>
+                        <textarea placeholder="Escreva aqui..." rows="3"></textarea>
+                        <button type="submit" class="btn-main" style="padding:0.6rem;">Enviar Pergunta</button>
                     </form>
                 </div>
-
                 <div class="footer-col">
                     <h4>Links Rápidos</h4>
                     <ul>
-                        <li><a href="#fale">Fale Conosco</a></li>
-                        <li><a href="#trabalhe">Trabalhe Conosco</a></li>
-                        <li><a href="#sobre">Sobre a Empresa</a></li>
+                        <li><a href="mailto:contato@ciprianusseptem.com">📧 Fale Conosco</a></li>
+                        <li><a href="#trabalhe">💼 Trabalhe Conosco</a></li>
+                        <li><a href="#sobre">ℹ️ Sobre a Empresa</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h4>Redes Sociais</h4>
                     <div class="social-icons">
-                        <a href="#" target="_blank">📘</a>
-                        <a href="#" target="_blank">📸</a>
-                        <a href="#" target="_blank">💼</a>
-                        <a href="#" target="_blank">▶</a>
-                        <a href="#" target="_blank">🐦</a>
+                        <a href="#">📘</a>
+                        <a href="#">📸</a>
+                        <a href="#">💼</a>
+                        <a href="#">▶</a>
+                        <a href="#">🐦</a>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h4>Informações</h4>
                     <ul>
@@ -423,10 +371,9 @@
                     </ul>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>© 2026 Ciprianus Septem — Gestão e Inovação Tecnologia Ltda. Todos os direitos reservados.</p>
-                <p style="margin-top:0.4rem; font-size:0.8rem; color:#666;">Este material não pode ser reproduzido, transmitido ou reescrito sem autorização expressa.</p>
+                <p style="margin-top:0.4rem; font-size:0.8rem; color:#666;">Este material não pode ser reproduzido sem autorização.</p>
                 <p class="protected">🛡️ Site Protegido</p>
             </div>
         </footer>
@@ -435,40 +382,22 @@
 </div>
 
 <script>
-// ✅ MENU — ABRIR E FECHAR
-const botao = document.getElementById('botaoMenu');
-const menu = document.getElementById('listaProjetos');
-const seta = document.getElementById('seta');
-
-botao.addEventListener('click', function() {
-    menu.classList.toggle('open');
-    seta.textContent = menu.classList.contains('open') ? '▲' : '▼';
+// ✅ MENU ABRIR E FECHAR
+document.getElementById('botaoMenu').addEventListener('click', function() {
+    const menu = document.getElementById('listaProjetos');
+    const seta = document.getElementById('seta');
+    menu.classList.toggle('aberto');
+    seta.textContent = menu.classList.contains('aberto') ? '▲' : '▼';
 });
 
-// ✅ FORMULÁRIO — ENVIO FUNCIONAL
-const form = document.getElementById('formularioAcesso');
-const msg = document.getElementById('mensagem-sucesso');
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault(); // não recarrega a página
-
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const telefone = document.getElementById('telefone').value;
-    const opcao = document.querySelector('input[name="receberPor"]:checked').value;
-
-    console.log('Dados enviados:', { nome, email, telefone, enviadoPor: opcao });
-
-    // Mostra mensagem de sucesso
-    msg.style.display = 'block';
-    form.reset();
-
-    // Esconde a mensagem após 6 segundos
-    setTimeout(() => { msg.style.display = 'none'; }, 6000);
+// ✅ FORMULÁRIO
+document.getElementById('formularioAcesso').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('mensagem-sucesso').style.display = 'block';
+    this.reset();
+    setTimeout(() => { document.getElementById('mensagem-sucesso').style.display = 'none'; }, 6000);
 });
 </script>
 
 </body>
-  </html>
-                              
-
+</html>
